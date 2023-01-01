@@ -9,7 +9,7 @@ class StateManager:
 
     def next(self):
         self.current = self.current + 1
-        if self.current >= len(self.states) - 1:
+        if self.current >= len(self.states):
             self.current = 0
         self.states[self.current].apply()
     
