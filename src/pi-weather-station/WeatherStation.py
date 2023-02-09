@@ -1,5 +1,6 @@
 from sense_hat import SenseHat
 from time import sleep
+import datetime
 from sense_hat_matrix.Graph import Graph
 from sense_hat_matrix.GraphUtil import temp_colour
 from sense_hat_matrix.GraphUtil import rescale
@@ -35,6 +36,12 @@ class WeatherStation:
         temp = self.__compensated_temperature()
         pixels = self.g.render(temp)
         self.sense.set_pixels(pixels)
+        sleep(10)
+
+    def __time(self):
+        dtNow = datetime.datetime.now()
+        timeNow = dtNow.strftime('%H:%M:%S.%Z')
+        self.sense.show_message(timeNow, 0.1, self.white)
 
     def run(self):
         self.sense.set_rotation(180)
@@ -45,7 +52,8 @@ class WeatherStation:
         temperature_state = State(self.__temperature)
         humidity_state = State(self.__humidity)
         graph_state = State(self.__graph)
-        state_manager = StateManager([graph_state, temperature_state, humidity_state])
+        time_state = State(self.__time)
+        state_manager = StateManager([graph_state, temperature_state, humidity_state, time_state])
 
         loop_state = True
         try:
@@ -61,7 +69,6 @@ class WeatherStation:
 
                 if loop_state:
                     state_manager.next()
-                    sleep(10)
                 else:
                     state_manager.refresh()
                     sleep(2)
