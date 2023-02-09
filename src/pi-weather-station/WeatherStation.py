@@ -40,7 +40,7 @@ class WeatherStation:
 
     def __time(self):
         dtNow = datetime.datetime.now()
-        timeNow = dtNow.strftime('%H:%M:%S')
+        timeNow = dtNow.strftime('%H:%M')
         self.sense.show_message(timeNow, 0.1, self.white)
 
     def run(self):
