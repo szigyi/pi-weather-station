@@ -1,4 +1,4 @@
-import WeatherStation
+from WeatherStation import WeatherStation
 
 
 def main():
