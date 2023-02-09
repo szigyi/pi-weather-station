@@ -53,7 +53,7 @@ class WeatherStation:
         humidity_state = State(self.__humidity)
         graph_state = State(self.__graph)
         time_state = State(self.__time)
-        state_manager = StateManager([graph_state, humidity_state, time_state, temperature_state])
+        state_manager = StateManager([graph_state, time_state, humidity_state, temperature_state])
 
         loop_state = True
         try:
