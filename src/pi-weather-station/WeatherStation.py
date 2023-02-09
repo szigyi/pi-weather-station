@@ -40,7 +40,7 @@ class WeatherStation:
 
     def __time(self):
         dtNow = datetime.datetime.now()
-        timeNow = dtNow.strftime('%H:%M:%S.%Z')
+        timeNow = dtNow.strftime('%H:%M:%S')
         self.sense.show_message(timeNow, 0.1, self.white)
 
     def run(self):
@@ -53,7 +53,7 @@ class WeatherStation:
         humidity_state = State(self.__humidity)
         graph_state = State(self.__graph)
         time_state = State(self.__time)
-        state_manager = StateManager([graph_state, temperature_state, humidity_state, time_state])
+        state_manager = StateManager([graph_state, humidity_state, time_state, temperature_state])
 
         loop_state = True
         try:
